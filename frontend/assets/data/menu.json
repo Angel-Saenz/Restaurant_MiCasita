@@ -1,0 +1,596 @@
+[
+  {
+    "id": "mc-huevos-rancheros",
+    "restaurant_id": "micasita",
+    "category": "desayunos",
+    "name": "Huevos Rancheros Tradicionales",
+    "badge": "Favorito Matutino",
+    "price": 9.5,
+    "description": "Dos huevos de granja montados sobre tortillas de maíz doraditas, bañados en salsa de chile rojo o chile verde asado de Nuevo México. Acompañados de frijoles refritos, papitas caseras y tortillas calientes.",
+    "ingredients": [
+      "Huevos frescos",
+      "Chile rojo o verde de NM",
+      "Frijoles refritos",
+      "Papas caseras",
+      "Tortillas"
+    ],
+    "image_url": "/assets/dishes/mc-huevos-rancheros.jpg",
+    "available": true
+  },
+  {
+    "id": "mc-breakfast-burrito",
+    "restaurant_id": "micasita",
+    "category": "desayunos",
+    "name": "Breakfast Burrito Gigante",
+    "badge": "El Clásico de Roswell",
+    "price": 7.99,
+    "description": "Burrito grande en tortilla de harina relleno de huevo revuelto esponjoso, papas sazonadas, queso derretido y tu elección de chorizo artesanal, tocino o salchicha. Pídelo seco o bañado en chile (smothered).",
+    "ingredients": [
+      "Tortilla de harina",
+      "Huevos revueltos",
+      "Papas doradas",
+      "Queso cheddar",
+      "Chorizo o tocino"
+    ],
+    "image_url": "/assets/dishes/mc-breakfast-burrito.jpg",
+    "available": true
+  },
+  {
+    "id": "mc-chilaquiles-caseros",
+    "restaurant_id": "micasita",
+    "category": "desayunos",
+    "name": "Chilaquiles con Huevos al Gusto",
+    "badge": "Receta Familiar",
+    "price": 9.74,
+    "description": "Totopos crujientes de maíz bañados en salsa roja o verde casera, espolvoreados con queso fresco, crema y cebolla finamente picada. Acompañados de dos huevos al gusto y frijoles refritos.",
+    "ingredients": [
+      "Totopos de maíz",
+      "Salsa roja o verde",
+      "Queso fresco",
+      "Crema",
+      "Dos huevos",
+      "Frijoles"
+    ],
+    "image_url": "/assets/dishes/mc-chilaquiles-caseros.jpg",
+    "available": true
+  },
+  {
+    "id": "mc-huevos-mexicana",
+    "restaurant_id": "micasita",
+    "category": "desayunos",
+    "name": "Huevos a la Mexicana",
+    "badge": null,
+    "price": 8.99,
+    "description": "Huevos revueltos con jitomate fresco, cebolla y chile serrano sofrito. Servidos con frijoles refritos, papas de la casa y tortillas de harina recién comaleadas.",
+    "ingredients": [
+      "Huevos",
+      "Jitomate",
+      "Cebolla",
+      "Chile serrano",
+      "Frijoles refritos",
+      "Papas"
+    ],
+    "image_url": "/assets/dishes/mc-huevos-mexicana.jpg",
+    "available": true
+  },
+  {
+    "id": "mc-menudo-fines-semana",
+    "restaurant_id": "micasita",
+    "category": "burritos",
+    "name": "Menudo Tradicional (Fines de Semana)",
+    "badge": "Especialidad Legendaria",
+    "price": 10.99,
+    "description": "Tazón grande de menudo rojo cocinado a fuego lento por horas con grano de maíz pozolero y tripa tierna. Servido con orégano, cebolla picada, hojuelas de chile seco, limones frescos y tortillas calientes.",
+    "ingredients": [
+      "Panza de res tierna",
+      "Maíz pozolero",
+      "Caldo rojo de chiles secos",
+      "Orégano",
+      "Cebolla",
+      "Limón"
+    ],
+    "image_url": "/assets/dishes/mc-menudo-fines-semana.jpg",
+    "available": true
+  },
+  {
+    "id": "mc-burrito-mi-casita",
+    "restaurant_id": "micasita",
+    "category": "burritos",
+    "name": "Burrito Especial \"Mi Casita\"",
+    "badge": "Firma de la Casa",
+    "price": 8.99,
+    "description": "Nuestro burrito insignia: abundante pollo tierno deshebrado sazonado con la receta secreta, envuelto en tortilla de harina grande y bañado por completo en cremosa salsa de queso nacho fundido.",
+    "ingredients": [
+      "Pollo deshebrado sazonado",
+      "Tortilla de harina",
+      "Salsa de queso nacho cremoso",
+      "Guarnición"
+    ],
+    "image_url": "/assets/dishes/mc-burrito-mi-casita.jpg",
+    "available": true
+  },
+  {
+    "id": "mc-caldo-pescado",
+    "restaurant_id": "micasita",
+    "category": "burritos",
+    "name": "Caldo de Pescado con Verduras",
+    "badge": "Saludable & Casero",
+    "price": 12.49,
+    "description": "Generosa sopa de filete de tilapia con zanahorias, papas, calabacitas y apio en caldo rojo aromático. Acompañado de arroz mexicano y tu elección de pan, galletas o tortillas.",
+    "ingredients": [
+      "Filete de tilapia",
+      "Zanahoria",
+      "Calabacita",
+      "Papa",
+      "Caldo sazonado",
+      "Arroz"
+    ],
+    "image_url": "/assets/dishes/mc-caldo-pescado.jpg",
+    "available": true
+  },
+  {
+    "id": "mc-caldo-camaron",
+    "restaurant_id": "micasita",
+    "category": "burritos",
+    "name": "Caldo de Camarón Especial",
+    "badge": "Favorito del Mar",
+    "price": 13.99,
+    "description": "Deliciosa sopa de camarones enteros con vegetales de temporada en caldo de mariscos especiado con cilantro fresco y toque de chile guajillo. Servido con arroz y tortillas.",
+    "ingredients": [
+      "Camarones selectos",
+      "Verduras frescas",
+      "Caldo de mariscos",
+      "Cilantro",
+      "Arroz"
+    ],
+    "image_url": "/assets/dishes/mc-caldo-camaron.jpg",
+    "available": true
+  },
+  {
+    "id": "mc-enchiladas-nm",
+    "restaurant_id": "micasita",
+    "category": "especiales",
+    "name": "Plato de Enchiladas Nuevo México",
+    "badge": "Auténtico Sabor NM",
+    "price": 10.49,
+    "description": "Tres enchiladas de maíz apiladas o enrolladas, rellenas de queso, carne molida o pollo deshebrado, bañadas en salsa de chile rojo o verde tostado de Nuevo México, con arroz y frijoles.",
+    "ingredients": [
+      "Tortillas de maíz",
+      "Relleno a elegir",
+      "Chile rojo o verde NM",
+      "Queso fundido",
+      "Arroz",
+      "Frijoles"
+    ],
+    "image_url": "/assets/dishes/mc-enchiladas-nm.jpg",
+    "available": true
+  },
+  {
+    "id": "mc-asado-de-puerco",
+    "restaurant_id": "micasita",
+    "category": "especiales",
+    "name": "Asado de Puerco Tradicional",
+    "badge": "Receta de Antaño",
+    "price": 9.48,
+    "description": "Trozos tiernos de lomo y pierna de puerco estofados lentamente en adobo espeso de chiles secos con comino y hierbas de olor. Acompañado de arroz con frijoles y tortillas de comal.",
+    "ingredients": [
+      "Carne de cerdo suave",
+      "Adobo de chile colorado",
+      "Comino y especias",
+      "Arroz",
+      "Frijoles"
+    ],
+    "image_url": "/assets/dishes/mc-asado-de-puerco.jpg",
+    "available": true
+  },
+  {
+    "id": "mc-carne-asada-plancha",
+    "restaurant_id": "micasita",
+    "category": "especiales",
+    "name": "Carne Asada a la Plancha",
+    "badge": null,
+    "price": 10.99,
+    "description": "Filete de res marinado y asado a la plancha, servido con cebollitas asadas, chile toreado, guacamole fresco, frijoles refritos y ensalada.",
+    "ingredients": [
+      "Filete de res marinado",
+      "Cebollitas asadas",
+      "Chile toreado",
+      "Guacamole",
+      "Frijoles"
+    ],
+    "image_url": "/assets/dishes/mc-carne-asada-plancha.jpg",
+    "available": true
+  },
+  {
+    "id": "mc-sopapilla-rellena",
+    "restaurant_id": "micasita",
+    "category": "especiales",
+    "name": "Sopapilla Rellena Suprema",
+    "badge": "Imperdible",
+    "price": 9.99,
+    "description": "Una esponjosa sopapilla dorada recién inflada, rellena de carne molida o pollo con frijoles, bañada en chile verde de Nuevo México y gratinada con queso.",
+    "ingredients": [
+      "Sopapilla dorada",
+      "Carne y frijoles",
+      "Chile verde NM",
+      "Queso derretido"
+    ],
+    "image_url": "/assets/dishes/mc-sopapilla-rellena.jpg",
+    "available": true
+  },
+  {
+    "id": "mc-sopapillas-miel",
+    "restaurant_id": "micasita",
+    "category": "sopapillas",
+    "name": "Sopapillas Calientitas con Miel (Orden de 4)",
+    "badge": "La Dulce Tradición",
+    "price": 4.99,
+    "description": "Nuestras famosas sopapillas: masa frita esponjada y crujiente, servidas recién salidas del sartén con mantequilla y miel para rociar en su interior.",
+    "ingredients": [
+      "Masa artesanal",
+      "Miel pura de abeja",
+      "Mantequilla"
+    ],
+    "image_url": "/assets/dishes/mc-sopapillas-miel.jpg",
+    "available": true
+  },
+  {
+    "id": "mc-flan-casero",
+    "restaurant_id": "micasita",
+    "category": "sopapillas",
+    "name": "Flan Casero con Caramelo",
+    "badge": null,
+    "price": 4.5,
+    "description": "Suave flan de vainilla horneado a baño maría con caramelo líquido dorado tradicional.",
+    "ingredients": [
+      "Leche condensada y evaporada",
+      "Vainilla natural",
+      "Caramelo"
+    ],
+    "image_url": "/assets/dishes/mc-flan-casero.jpg",
+    "available": true
+  },
+  {
+    "id": "mc-cafe-de-olla",
+    "restaurant_id": "micasita",
+    "category": "bebidas",
+    "name": "Café de Olla Artesanal",
+    "badge": "Reconfortante",
+    "price": 2.99,
+    "description": "Café recién colado con rajitas de canela, toque de piloncillo y cáscara de naranja.",
+    "ingredients": [
+      "Café tostado",
+      "Canela",
+      "Piloncillo"
+    ],
+    "image_url": "/assets/dishes/mc-cafe-de-olla.jpg",
+    "available": true
+  },
+  {
+    "id": "mc-aguas-frescas",
+    "restaurant_id": "micasita",
+    "category": "bebidas",
+    "name": "Aguas Frescas del Día (Horchata / Jamaica)",
+    "badge": null,
+    "price": 3.49,
+    "description": "Vaso grande de agua fresca natural elaborada diariamente con arroz, canela y vainilla o flor de jamaica.",
+    "ingredients": [
+      "Agua fresca natural",
+      "Hielo"
+    ],
+    "image_url": "/assets/dishes/mc-aguas-frescas.jpg",
+    "available": true
+  },
+  {
+    "id": "gb-tacos-pastor",
+    "restaurant_id": "garibaldi",
+    "category": "tacos",
+    "name": "Tacos al Pastor Tradicionales (Orden de 4)",
+    "badge": "Estrella Garibaldi",
+    "price": 11.99,
+    "description": "Cuatro tacos en tortilla de maíz nixtamal con carne de cerdo marinada en achiote, jugo de cítricos y chiles secos, doradita a la plancha con piña asada, cilantro y cebolla picada.",
+    "ingredients": [
+      "Cerdo al pastor marinado",
+      "Piña asada caramelizada",
+      "Cilantro fresco",
+      "Cebolla",
+      "Salsa taquera"
+    ],
+    "image_url": "/assets/dishes/gb-tacos-pastor.jpg",
+    "available": true
+  },
+  {
+    "id": "gb-tacos-barbacoa",
+    "restaurant_id": "garibaldi",
+    "category": "tacos",
+    "name": "Tacos de Barbacoa de Res (Orden de 4)",
+    "badge": "Súper Jugosa",
+    "price": 12.49,
+    "description": "Cuatro tacos de carne de res horneada lentamente hasta quedar tierna y jugosa, servidos con consomé para chopear, cebollita, cilantro y limones frescos.",
+    "ingredients": [
+      "Barbacoa de res suave",
+      "Tortillas de maíz",
+      "Consomé especiado",
+      "Cilantro y limón"
+    ],
+    "image_url": "/assets/dishes/gb-tacos-barbacoa.jpg",
+    "available": true
+  },
+  {
+    "id": "gb-tacos-asada",
+    "restaurant_id": "garibaldi",
+    "category": "tacos",
+    "name": "Tacos de Carne Asada al Carbón (Orden de 4)",
+    "badge": null,
+    "price": 12.49,
+    "description": "Corte de res marinado y asado al comal caliente, picado al momento y servido con cebollitas asadas, chile toreado y salsa verde o roja.",
+    "ingredients": [
+      "Carne de res asada",
+      "Tortillas calientes",
+      "Cebollitas asadas",
+      "Chile toreado"
+    ],
+    "image_url": "/assets/dishes/gb-tacos-asada.jpg",
+    "available": true
+  },
+  {
+    "id": "gb-tacos-steak-cactus",
+    "restaurant_id": "garibaldi",
+    "category": "tacos",
+    "name": "Tacos de Steak con Nopalitos Asados",
+    "badge": "Especialidad",
+    "price": 12.99,
+    "description": "Cuatro tacos que combinan tiras jugosas de bistec con nopalitos tiernos asados a la plancha, cebolla caramelizada y queso fresco desmoronado.",
+    "ingredients": [
+      "Bistec de res",
+      "Nopalitos asados",
+      "Cebolla asada",
+      "Queso fresco"
+    ],
+    "image_url": "/assets/dishes/gb-tacos-steak-cactus.jpg",
+    "available": true
+  },
+  {
+    "id": "gb-alambre-especial",
+    "restaurant_id": "garibaldi",
+    "category": "alambres",
+    "name": "Alambre Especial Garibaldi",
+    "badge": "Favorito al Comal",
+    "price": 14.99,
+    "description": "Sauté generoso de fajita de res, pechuga de pollo, tocino crocante, chorizo artesanal, pimientos verdes y cebolla, todo cubierto y fundido con queso Oaxaca. Servido con arroz, frijoles y tortillas.",
+    "ingredients": [
+      "Fajita de res y pollo",
+      "Tocino",
+      "Chorizo",
+      "Pimientos y cebolla",
+      "Queso Oaxaca fundido"
+    ],
+    "image_url": "/assets/dishes/gb-alambre-especial.jpg",
+    "available": true
+  },
+  {
+    "id": "gb-the-garibaldi-plate",
+    "restaurant_id": "garibaldi",
+    "category": "alambres",
+    "name": "\"The Garibaldi Plate\" (Platillo Insignia)",
+    "badge": "Platillo Insignia",
+    "price": 16.99,
+    "description": "Corte selecto de carne a la parrilla acompañado de una enchilada roja de queso, un chile relleno capeado tradicional, guacamole fresco, arroz a la mexicana y frijoles refritos.",
+    "ingredients": [
+      "Carne a la parrilla",
+      "Enchilada roja",
+      "Chile relleno",
+      "Guacamole artesanal",
+      "Arroz y frijoles"
+    ],
+    "image_url": "/assets/dishes/gb-the-garibaldi-plate.jpg",
+    "available": true
+  },
+  {
+    "id": "gb-parrillada-familiar",
+    "restaurant_id": "garibaldi",
+    "category": "alambres",
+    "name": "Parrillada Mixta Familiar (Para Compartir)",
+    "badge": "Para Fiestas & Familias",
+    "price": 24.99,
+    "description": "Bandeja caliente al carbón con arrachera asada, pollo marinado, salchicha polaca o chorizo, queso panela asado, nopalitos a la plancha, chiles toreados, cebollitas cambray y tortillas para todos.",
+    "ingredients": [
+      "Arrachera",
+      "Pechuga marinada",
+      "Chorizo",
+      "Queso panela",
+      "Nopales",
+      "Cebollitas"
+    ],
+    "image_url": "/assets/dishes/gb-parrillada-familiar.jpg",
+    "available": true
+  },
+  {
+    "id": "gb-pozole-rojo",
+    "restaurant_id": "garibaldi",
+    "category": "pozole",
+    "name": "Pozole Rojo Tradicional",
+    "badge": "Cultura & Sazón",
+    "price": 9.44,
+    "description": "Plato hondo humeante de pozole con maíz cacahuazintle y carne de cerdo en caldo aromático de chiles guajillo y ancho. Se acompaña de col o lechuga picada, rabanitos, orégano, cebolla y tostadas.",
+    "ingredients": [
+      "Maíz pozolero",
+      "Carne de cerdo suave",
+      "Caldo rojo de chile guajillo",
+      "Rábanos y col",
+      "Tostadas"
+    ],
+    "image_url": "/assets/dishes/gb-pozole-rojo.jpg",
+    "available": true
+  },
+  {
+    "id": "gb-mole-poblano",
+    "restaurant_id": "garibaldi",
+    "category": "pozole",
+    "name": "Pollo en Mole Poblano Artesanal",
+    "badge": "Herencia Culinaria",
+    "price": 13.99,
+    "description": "Pierna y muslo de pollo tiernos bañados en nuestro mole poblano espeso y complejo, con notas de chocolate amargo, chiles tostados y ajonjolí dorado. Servido con arroz rojo y frijoles.",
+    "ingredients": [
+      "Pollo tierno",
+      "Mole poblano artesanal",
+      "Ajonjolí tostado",
+      "Arroz mexicano",
+      "Frijoles"
+    ],
+    "image_url": "/assets/dishes/gb-mole-poblano.jpg",
+    "available": true
+  },
+  {
+    "id": "gb-chiles-rellenos",
+    "restaurant_id": "garibaldi",
+    "category": "pozole",
+    "name": "Chiles Rellenos Capeados",
+    "badge": null,
+    "price": 12.99,
+    "description": "Dos chiles verdes rellenos de queso asadero, capeados en huevo esponjado y bañados en caldillo de jitomate sazonado. Con arroz y frijoles.",
+    "ingredients": [
+      "Chiles verdes",
+      "Queso asadero",
+      "Capeado esponjoso",
+      "Caldillo de jitomate"
+    ],
+    "image_url": "/assets/dishes/gb-chiles-rellenos.jpg",
+    "available": true
+  },
+  {
+    "id": "gb-camarones-fiesta",
+    "restaurant_id": "garibaldi",
+    "category": "mariscos",
+    "name": "Camarones Fiesta (Envueltos en Tocino)",
+    "badge": "Sabor Costero Supremo",
+    "price": 18.74,
+    "description": "Camarones jumbo rellenos de queso y pimiento, envueltos en rebanadas de tocino ahumado y dorados a fuego vivo. Servidos sobre cama de arroz blanco con ensalada y aderezo especial.",
+    "ingredients": [
+      "Camarones jumbo",
+      "Tocino ahumado crocante",
+      "Queso",
+      "Arroz blanco",
+      "Ensalada fresca"
+    ],
+    "image_url": "/assets/dishes/gb-camarones-fiesta.jpg",
+    "available": true
+  },
+  {
+    "id": "gb-camarones-empanizados",
+    "restaurant_id": "garibaldi",
+    "category": "mariscos",
+    "name": "Camarones Empanizados Crujientes",
+    "badge": null,
+    "price": 16.99,
+    "description": "Camarones gigantes rebozados en pan rallado sazonado y fritos al dorado perfecto. Acompañados de papas a la francesa, arroz y salsa tártara o chipotle.",
+    "ingredients": [
+      "Camarones selectos",
+      "Empanizado crujiente",
+      "Papas a la francesa",
+      "Aderezo tártara"
+    ],
+    "image_url": "/assets/dishes/gb-camarones-empanizados.jpg",
+    "available": true
+  },
+  {
+    "id": "gb-coctel-camarones",
+    "restaurant_id": "garibaldi",
+    "category": "mariscos",
+    "name": "Cóctel de Camarón Garibaldi",
+    "badge": "Fresco & Refrescante",
+    "price": 15.99,
+    "description": "Camarones cocidos y servidos en copa grande con caldo frío sazonado de jitomate y cítricos, pepino, cebolla morada, cilantro y abundante aguacate en cubos.",
+    "ingredients": [
+      "Camarones cocidos",
+      "Caldo cítrico de tomate",
+      "Aguacate",
+      "Cilantro y pepino"
+    ],
+    "image_url": "/assets/dishes/gb-coctel-camarones.jpg",
+    "available": true
+  },
+  {
+    "id": "gb-ceviche-mixto",
+    "restaurant_id": "garibaldi",
+    "category": "mariscos",
+    "name": "Ceviche Fresco de Pescado y Camarón",
+    "badge": null,
+    "price": 16.99,
+    "description": "Pescado blanco y camarones curtidos al momento en jugo de limón fresco, con jitomate, cebolla morada, cilantro y láminas de aguacate. Servido con tostadas crujientes.",
+    "ingredients": [
+      "Pescado blanco",
+      "Camarón",
+      "Jugo de limón fresco",
+      "Aguacate",
+      "Tostadas"
+    ],
+    "image_url": "/assets/dishes/gb-ceviche-mixto.jpg",
+    "available": true
+  },
+  {
+    "id": "gb-chicken-fried-steak",
+    "restaurant_id": "garibaldi",
+    "category": "crossover",
+    "name": "Chicken Fried Steak Estilo New Mexico",
+    "badge": "Clásico del Suroeste",
+    "price": 13.99,
+    "description": "Corte grueso de carne de res empanizado al estilo sureño, frito bien crujiente y cubierto con abundante gravy blanco cremoso. Acompañado de puré de papa o papas a la francesa y ensalada.",
+    "ingredients": [
+      "Corte de res empanizado",
+      "Gravy blanco campirano",
+      "Puré de papa",
+      "Ensalada"
+    ],
+    "image_url": "/assets/dishes/gb-chicken-fried-steak.jpg",
+    "available": true
+  },
+  {
+    "id": "gb-asado-and-eggs",
+    "restaurant_id": "garibaldi",
+    "category": "crossover",
+    "name": "Asado & Eggs (Platillo Fuerte)",
+    "badge": "Desayuno o Almuerzo",
+    "price": 13.49,
+    "description": "Generosa porción de asado de puerco en salsa roja, acompañado de dos huevos al gusto, frijoles refritos, papitas y tortillas calientes.",
+    "ingredients": [
+      "Asado de puerco",
+      "Dos huevos",
+      "Frijoles refritos",
+      "Papas doraditas",
+      "Tortillas"
+    ],
+    "image_url": "/assets/dishes/gb-asado-and-eggs.jpg",
+    "available": true
+  },
+  {
+    "id": "gb-margarita-virgen",
+    "restaurant_id": "garibaldi",
+    "category": "bebidas",
+    "name": "Margarita Especial de la Casa (Sin Alcohol / Preparada)",
+    "badge": "Refrescante Fiesta",
+    "price": 5.99,
+    "description": "Mezcla cítrica de jugo de lima, limón y naranja escarchada con sal de mar o tajín.",
+    "ingredients": [
+      "Jugo de lima y limón",
+      "Escarchado con tajín o sal",
+      "Hielo frappé"
+    ],
+    "image_url": "/assets/dishes/gb-margarita-virgen.jpg",
+    "available": true
+  },
+  {
+    "id": "gb-refrescos-mexicanos",
+    "restaurant_id": "garibaldi",
+    "category": "bebidas",
+    "name": "Refrescos Mexicanos de Vidrio (Jarritos, Coca-Cola)",
+    "badge": null,
+    "price": 3.49,
+    "description": "Botella de vidrio tradicional endulzada con azúcar de caña pura.",
+    "ingredients": [
+      "Refresco de vidrio importado"
+    ],
+    "image_url": "/assets/dishes/gb-refrescos-mexicanos.jpg",
+    "available": true
+  }
+]

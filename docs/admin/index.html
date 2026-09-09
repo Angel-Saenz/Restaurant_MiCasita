@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Administración — Mi Casita & Garibaldi</title>
+  <script src="/theme-init.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body class="admin-body">
+
+  <div id="loginScreen" class="login-overlay">
+    <div class="login-card">
+      <div class="login-icon-badge">
+        <i class="fa-solid fa-utensils"></i>
+      </div>
+      <h1 class="login-title">Panel de Administración</h1>
+      <p class="login-subtitle">Mi Casita & Garibaldi Mexican Kitchen — Acceso Restringido</p>
+
+      <form id="loginForm" style="display: flex; flex-direction: column; gap: 1.1rem;">
+        <div>
+          <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.4rem; color: var(--text-muted);">Usuario:</label>
+          <input type="text" id="loginUsername" required class="admin-input" placeholder="Ingresa tu usuario" autocomplete="username">
+        </div>
+        <div>
+          <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.4rem; color: var(--text-muted);">Contraseña:</label>
+          <input type="password" id="loginPassword" required class="admin-input" placeholder="••••••••" autocomplete="current-password">
+        </div>
+        <div id="loginError" class="login-error" style="display: none;"></div>
+        <button class="btn btn--primary" type="submit" style="padding: 0.85rem; font-size: 0.95rem; margin-top: 0.4rem;">
+          <i class="fa-solid fa-right-to-bracket"></i> Iniciar Sesión
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div id="adminApp" class="admin-layout" style="display: none;">
+
+    <aside class="admin-sidebar">
+      <div class="brand">
+        <div class="brand-icon-box">
+          <i class="fa-solid fa-store"></i>
+        </div>
+        <div>
+          <span class="brand-name">Mi Casita & Garibaldi</span>
+          <span class="brand-tag">Panel Administrativo</span>
+        </div>
+      </div>
+
+      <nav class="admin-nav">
+        <button class="nav-tab active" data-tab="ordenes" type="button">
+          <i class="fa-solid fa-bell-concierge"></i>
+          <span>Órdenes & Cocina</span>
+          <span id="pendingBadge" class="tab-badge">0</span>
+        </button>
+        <button class="nav-tab" data-tab="caja" type="button">
+          <i class="fa-solid fa-cash-register"></i>
+          <span>Caja & Cortes</span>
+        </button>
+        <button class="nav-tab" data-tab="menu" type="button">
+          <i class="fa-solid fa-utensils"></i>
+          <span>Gestión de Menú</span>
+        </button>
+        <button class="nav-tab" data-tab="analytics" type="button">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Analíticas</span>
+        </button>
+        <button class="nav-tab" data-tab="ajustes" type="button">
+          <i class="fa-solid fa-qrcode"></i>
+          <span>Ajustes & QR</span>
+        </button>
+      </nav>
+
+      <div style="padding: 1.25rem; border-top: 1px solid var(--border-subtle); margin-top: auto; background: rgba(0,0,0,0.15);">
+        <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.6rem;" id="adminUserLabel">
+          <i class="fa-solid fa-user-shield"></i> Usuario: Admin
+        </div>
+        <button id="logoutBtn" class="btn btn--outline" style="width: 100%; padding: 0.55rem; font-size: 0.85rem;">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión
+        </button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-header">
+        <h1 id="tabTitle">Órdenes & Cocina en Tiempo Real</h1>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <span id="liveStatus" class="live-dot" title="Conexión en vivo activa"></span>
+          <button id="refreshDataBtn" class="btn btn--outline" style="padding: 0.45rem 0.9rem; font-size: 0.85rem;">
+            <i class="fa-solid fa-rotate-right"></i> Actualizar
+          </button>
+        </div>
+      </header>
+
+      <section id="tab-ordenes" class="tab-content active">
+        <div id="mesasGrid" class="mesas-grid">
+
+        </div>
+      </section>
+
+      <section id="tab-caja" class="tab-content">
+        <div class="caja-summary-grid">
+          <div class="summary-card">
+            <span class="summary-label"><i class="fa-solid fa-wallet"></i> Ventas Turno en Curso</span>
+            <span id="cajaTurnoTotal" class="summary-value" style="color: var(--secondary);">$0.00 USD</span>
+            <span id="cajaTurnoCuentas" class="summary-sub">0 Cuentas Cobradas</span>
+          </div>
+          <div class="summary-card">
+            <span class="summary-label"><i class="fa-solid fa-coins"></i> Fondo de Caja Inicial</span>
+            <span id="cajaFondoInicial" class="summary-value">$0.00 USD</span>
+            <span class="summary-sub">Cambio disponible en cajón</span>
+          </div>
+          <div class="summary-card">
+            <span class="summary-label"><i class="fa-solid fa-vault"></i> Efectivo Esperado en Caja</span>
+            <span id="cajaEsperadoTotal" class="summary-value" style="color: var(--agave);">$0.00 USD</span>
+            <span class="summary-sub">Fondo + Ventas en Efectivo</span>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
+          <button id="closeShiftBtn" class="btn btn--primary" type="button">
+            <i class="fa-solid fa-lock"></i> Cerrar Turno y Realizar Corte de Caja
+          </button>
+          <button id="setFondoBtn" class="btn btn--secondary" type="button">
+            <i class="fa-solid fa-money-bill-wave"></i> Ajustar Fondo de Caja
+          </button>
+        </div>
+
+        <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-main);">
+          <i class="fa-solid fa-clock-rotate-left"></i> Historial de Cortes Realizados
+        </h2>
+        <div class="table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Fecha Cierre</th>
+                <th>Cerrado Por</th>
+                <th>Cuentas</th>
+                <th>Efectivo</th>
+                <th>Tarjeta</th>
+                <th>Total</th>
+                <th>Diferencia</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="cortesTableBody">
+
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="tab-menu" class="tab-content">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <label style="font-weight: 700; font-size: 0.9rem; color: var(--text-muted);">
+              <i class="fa-solid fa-filter"></i> Filtrar Restaurante:
+            </label>
+            <select id="adminRestaurantFilter" class="admin-input admin-select" style="width: auto; min-width: 220px;">
+              <option value="">Todos los Restaurantes</option>
+              <option value="micasita">Mi Casita Restaurant</option>
+              <option value="garibaldi">Garibaldi Mexican Kitchen</option>
+            </select>
+          </div>
+          <button id="addDishBtn" class="btn btn--primary" type="button">
+            <i class="fa-solid fa-plus"></i> Nuevo Platillo
+          </button>
+        </div>
+
+        <div class="table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Orden</th>
+                <th>Restaurante</th>
+                <th>Foto</th>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Precio ($ USD)</th>
+                <th>Badge</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="menuTableBody">
+
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="tab-analytics" class="tab-content">
+        <div class="caja-summary-grid">
+          <div class="summary-card">
+            <span class="summary-label"><i class="fa-solid fa-eye"></i> Vistas Totales de Platillos</span>
+            <span id="anTotalViews" class="summary-value">0</span>
+          </div>
+          <div class="summary-card">
+            <span class="summary-label"><i class="fa-solid fa-bag-shopping"></i> Pedidos Realizados</span>
+            <span id="anTotalOrders" class="summary-value" style="color: var(--secondary);">0</span>
+          </div>
+          <div class="summary-card">
+            <span class="summary-label"><i class="fa-solid fa-users"></i> Visitantes Únicos</span>
+            <span id="anVisitors" class="summary-value" style="color: var(--agave);">0</span>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+          <div class="summary-card">
+            <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem;">
+              <i class="fa-solid fa-fire" style="color: #f97316;"></i> Lo Más Pedido
+            </h3>
+            <div id="topDishesList"></div>
+          </div>
+          <div class="summary-card">
+            <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem;">
+              <i class="fa-solid fa-chart-line-down" style="color: #ef4444;"></i> Más Vistos con Bajo Pedido
+            </h3>
+            <div id="abandonedDishesList"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tab-ajustes" class="tab-content">
+        <div class="summary-card" style="max-width: 600px;">
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fa-solid fa-qrcode" style="color: var(--secondary);"></i> Generador de Código QR para Mesas
+          </h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.6;">
+            Imprime este código QR y colócalo en las mesas del restaurante. Al escanearlo con la cámara del celular, el comensal abrirá directamente la comanda digital interactiva correspondiente a su mesa.
+          </p>
+
+          <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap;">
+            <label style="font-weight: 600; color: var(--text-main);">Número de Mesa:</label>
+            <input type="number" id="qrMesaNumber" value="1" min="1" max="99" class="admin-input" style="width: 100px;">
+            <button id="generateQrBtn" class="btn btn--primary" type="button">
+              <i class="fa-solid fa-arrows-rotate"></i> Generar QR
+            </button>
+          </div>
+
+          <div id="qrContainer" style="text-align: center; display: none; background: #ffffff; padding: 2rem; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+            <img id="qrImage" src="" alt="QR Mesa" style="margin: 0 auto 1rem auto; max-width: 250px; display: block;">
+            <div id="qrTargetUrl" style="color: #110d0a; font-weight: 700; font-size: 0.88rem; margin-bottom: 1.25rem; word-break: break-all;"></div>
+            <button id="printQrBtn" class="btn btn--secondary" type="button">
+              <i class="fa-solid fa-print"></i> Imprimir Código QR
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="cobroModal" class="modal-backdrop">
+    <div class="modal-card">
+      <button id="cobroModalClose" class="modal-close" type="button" title="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+      <h2 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 1rem; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem;">
+        <i class="fa-solid fa-receipt" style="color: var(--secondary);"></i> Cobrar Mesa
+      </h2>
+      <div id="cobroDetailsBox" style="margin-bottom: 1.25rem; font-size: 0.95rem; background: rgba(0,0,0,0.25); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle);"></div>
+
+      <form id="cobroForm" style="display: flex; flex-direction: column; gap: 1rem;">
+        <div>
+          <label style="font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 0.4rem; color: var(--text-muted);">Método de Pago:</label>
+          <select id="cobroMetodo" class="admin-input admin-select">
+            <option value="efectivo">Efectivo</option>
+            <option value="tarjeta">Tarjeta (Terminal POS / Crédito / Débito)</option>
+            <option value="transferencia">Transferencia / Apple Pay / Zelle</option>
+          </select>
+        </div>
+
+        <div id="recibidoContainer">
+          <label style="font-weight: 600; font-size: 0.85rem; display: block; margin-bottom: 0.4rem; color: var(--text-muted);">Monto Recibido ($ USD):</label>
+          <input type="number" step="0.01" id="cobroRecibido" class="admin-input" placeholder="0.00">
+          <div id="cambioCalculado" style="font-size: 0.95rem; font-weight: 700; color: var(--secondary); margin-top: 0.5rem;">Cambio: $0.00 USD</div>
+        </div>
+
+        <button class="btn btn--primary" type="submit" style="padding: 0.9rem; margin-top: 0.5rem;">
+          <i class="fa-solid fa-check"></i> Confirmar Cobro e Imprimir Ticket
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div id="dishModal" class="modal-backdrop">
+    <div class="modal-card" style="max-width: 600px;">
+      <button id="dishModalClose" class="modal-close" type="button" title="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+      <h2 id="dishModalTitle" style="font-size: 1.35rem; font-weight: 800; margin-bottom: 1.25rem; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem;">
+        <i class="fa-solid fa-utensils" style="color: var(--secondary);"></i> Nuevo Platillo
+      </h2>
+
+      <form id="dishForm" style="display: flex; flex-direction: column; gap: 1rem;">
+        <input type="hidden" id="dishId">
+
+        <div>
+          <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.35rem; color: var(--text-muted);">Restaurante:</label>
+          <select id="dishRestaurant" class="admin-input admin-select">
+            <option value="micasita">Mi Casita Restaurant (305 S Main St)</option>
+            <option value="garibaldi">Garibaldi Mexican Kitchen (2019 S Main St)</option>
+          </select>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.35rem; color: var(--text-muted);">Nombre:</label>
+            <input type="text" id="dishName" required class="admin-input" placeholder="Ej. Huevos Rancheros">
+          </div>
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.35rem; color: var(--text-muted);">Categoría:</label>
+            <select id="dishCategory" class="admin-input admin-select">
+              <option value="desayunos">Desayunos & Huevos</option>
+              <option value="burritos">Burritos & Caldos</option>
+              <option value="especiales">Especialidades & Enchiladas</option>
+              <option value="sopapillas">Sopapillas & Postres</option>
+              <option value="tacos">Tacos & Taquería</option>
+              <option value="alambres">Alambres & Parrilladas</option>
+              <option value="pozole">Pozole & Guisos</option>
+              <option value="mariscos">Mariscos de la Cocina</option>
+              <option value="crossover">Especialidades Suroeste</option>
+              <option value="bebidas">Bebidas & Refrescos</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.35rem; color: var(--text-muted);">Precio ($ USD):</label>
+            <input type="number" step="0.01" id="dishPrice" required class="admin-input" placeholder="9.99">
+          </div>
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.35rem; color: var(--text-muted);">Badge Destacado (Opcional):</label>
+            <input type="text" id="dishBadge" class="admin-input" placeholder="Ej. Favorito, Especialidad">
+          </div>
+        </div>
+
+        <div>
+          <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.35rem; color: var(--text-muted);">Descripción:</label>
+          <textarea id="dishDescription" rows="2" class="admin-input" placeholder="Descripción del platillo y acompañamientos..."></textarea>
+        </div>
+
+        <div>
+          <label style="font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.35rem; color: var(--text-muted);">Fotografía del Platillo:</label>
+          <input type="file" id="dishPhotoInput" accept="image/*" class="admin-input" style="padding: 0.45rem;">
+          <input type="hidden" id="dishImageUrl">
+        </div>
+
+        <div>
+          <label style="display: flex; align-items: center; gap: 0.6rem; cursor: pointer;">
+            <input type="checkbox" id="dishAvailable" checked style="width: 18px; height: 18px; accent-color: var(--primary);">
+            <span style="font-weight: 600; font-size: 0.92rem; color: var(--text-main);">Disponible en el Menú</span>
+          </label>
+        </div>
+
+        <button class="btn btn--primary" type="submit" style="padding: 0.85rem; margin-top: 0.5rem;">
+          <i class="fa-solid fa-floppy-disk"></i> Guardar Platillo
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="/admin/admin.js"></script>
+</body>
+</html>
