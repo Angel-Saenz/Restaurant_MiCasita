@@ -1,0 +1,29 @@
+{
+  "name": "mi-casita-web",
+  "version": "1.0.0",
+  "description": "Sitio web, panel de administración y sistema de comandas por QR para el restaurante Mi Casita — Auténtica Cocina Mexicana",
+  "main": "backend/server.js",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=22.5"
+  },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env backend/server.js",
+    "dev": "node --watch --env-file-if-exists=.env backend/server.js",
+    "seed": "node --env-file-if-exists=.env backend/seed.js",
+    "reset-password": "node --env-file-if-exists=.env backend/reset-password.js",
+    "reset-ventas": "node --env-file-if-exists=.env backend/reset-ventas.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "compression": "^1.8.1",
+    "express": "^5.0.1",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
+    "qrcode": "^1.5.4",
+    "sharp": "^0.33.5"
+  }
+}

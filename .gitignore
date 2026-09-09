@@ -1,0 +1,11 @@
+node_modules/
+.env
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+backend/data/uploads/*
+!backend/data/uploads/.gitkeep
+backend/data/*.sqlite
+backend/data/*.json.migrado
+.DS_Store
+Thumbs.db

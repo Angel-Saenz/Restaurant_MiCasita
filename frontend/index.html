@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark" data-restaurant="micasita">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#130e0b" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c05a3e'><path d='M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v16h2.5v-6h2V6h-4.5z'/></svg>" />
+
+  <script src="/theme-init.js"></script>
+</head>
+<body>
+
+<a href="#menu" class="skip-link" data-i18n="skipToMenu">Saltar al menú</a>
+
+<div class="family-topbar">
+  <div class="container family-topbar-inner">
+    <div class="family-tag">
+      <span class="badge-star"><i class="fa-solid fa-star"></i></span>
+      <span data-i18n="familyTag">Tradición Familiar Garcia / Salazar / Saens · Roswell, New Mexico</span>
+    </div>
+    <div class="family-topbar-actions">
+      <span style="font-size: 0.76rem; color: var(--dim);" data-i18n="twoRestaurantsNote">Dos restaurantes únicos:</span>
+      <button class="topbar-switch-btn" id="topbarSwitchBtn" type="button">
+        <i class="fa-solid fa-arrow-right-arrow-left"></i> <span data-i18n="chooseSwitchBtn">Elegir / Cambiar Restaurante</span>
+      </button>
+      <div class="lang-switch-group" aria-label="Language selector">
+        <button type="button" class="lang-btn active" data-lang="es">ES</button>
+        <span class="lang-divider">|</span>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header>
+  <nav class="navbar" id="navbar" aria-label="Navegación principal">
+    <div class="container nav-inner">
+
+      <div class="nav-brand-group">
+        <a href="#inicio" class="nav-logo" id="navLogo">
+          <span class="name" id="navRestaurantName">{{REST_NAME}}</span>
+          <span class="since" id="navRestaurantSince">Roswell, NM · Desde {{FOUNDED}}</span>
+        </a>
+
+        <button class="nav-restaurant-pill" id="navSwitchBtn" type="button" title="Haz clic para alternar entre Mi Casita y Garibaldi">
+          <span class="pill-dot"></span>
+          <span id="navPillLabel"><i class="fa-solid fa-house"></i> Mi Casita</span>
+          <span style="font-size: 0.7rem; opacity: 0.7;">▾</span>
+        </button>
+      </div>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#menu" data-section="menu" data-i18n="navMenu">Menú</a></li>
+        <li><a href="#armalo" data-section="armalo" data-i18n="navBuilder">Arma tu Platillo</a></li>
+        <li><a href="#historia" data-section="historia" data-i18n="navStory">Historia Familiar</a></li>
+        <li><a href="#pedidos" data-section="pedidos" data-i18n="navContact">Ubicación & Contacto</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <span class="live-status" id="liveStatus">● CARGANDO</span>
+        <div class="lang-switch-group" aria-label="Selector de idioma">
+          <button type="button" class="lang-btn active" data-lang="es" title="Español">ES</button>
+          <span class="lang-divider">|</span>
+          <button type="button" class="lang-btn" data-lang="en" title="English">EN</button>
+        </div>
+        <button class="icon-btn" id="themeToggle" aria-label="Cambiar tema" type="button">
+          <span class="icon-sun" aria-hidden="true"><i class="fa-solid fa-sun"></i></span>
+          <span class="icon-moon" aria-hidden="true"><i class="fa-solid fa-moon"></i></span>
+        </button>
+        <a href="tel:{{PHONE}}" class="nav-cta" id="navPhoneCta"><i class="fa-solid fa-phone"></i> <span class="nav-cta-text">{{PHONE_LABEL}}</span></a>
+        <a href="/admin" class="btn btn-outline" style="padding: 7px 14px; font-size: 0.78rem;"><i class="fa-solid fa-lock"></i> <span data-i18n="navAdmin">Admin</span></a>
+      </div>
+
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <section id="inicio" class="hero-track">
+    <div class="container hero-stage">
+      <div class="hero-glow" aria-hidden="true"></div>
+
+      <div class="container hero-inner">
+
+        <div class="hero-copy">
+          <div class="hero-restaurant-badge" id="heroBadge">
+            {{REST_SHORT}} · ROSWELL, NM
+          </div>
+          <p class="hero-eyebrow" id="heroEyebrow">{{REST_EYEBROW}}</p>
+          <h1 class="hero-title" id="heroTitle">{{REST_HERO_TITLE}}</h1>
+          <p class="hero-subtitle" id="heroSubtitle">{{REST_HERO_SUBTITLE}}</p>
+
+          <div class="hero-actions">
+            <a href="#menu" class="btn btn-primary" id="heroMenuBtn" data-i18n="heroMenuBtn">Ver el Menú</a>
+            <a href="#armalo" class="btn btn-secondary" id="heroBuilderBtn" data-i18n="heroBuilderBtn">Arma tu Platillo</a>
+            <button class="btn btn-outline" id="heroSwitchBtn" type="button"><i class="fa-solid fa-arrow-right-arrow-left"></i> <span data-i18n="heroSwitchBtn">Cambiar Restaurante</span></button>
+          </div>
+
+          <div class="hero-highlights-strip" id="heroHighlightsStrip">
+
+          </div>
+        </div>
+
+        <div class="hero-art-box">
+          <div class="hero-dish-card" id="heroDishCard">
+            <span class="hero-dish-emoji" id="heroDishEmoji"><i class="fa-solid fa-utensils"></i></span>
+            <span class="hero-dish-tag" id="heroDishTag">Especialidad de la Casa</span>
+            <h3 class="hero-dish-name" id="heroDishName">Platillo Insignia</h3>
+            <p class="hero-dish-desc" id="heroDishDesc">Preparado diariamente con ingredientes frescos y sazón auténtica.</p>
+            <a href="#menu" class="btn btn-outline" style="padding: 10px 20px; font-size: 0.82rem;" data-i18n="exploreMenu">Explorar Menú</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="menu" class="section-padding">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow" id="menuEyebrow" data-i18n="menuSectionEyebrow">Tradición Culinaria en Roswell</span>
+        <h2 class="section-title" id="menuTitle" data-i18n="menuSectionTitle">Nuestra Carta</h2>
+        <p class="section-desc" id="menuDesc" data-i18n="menuSectionDesc">Precios en dólares (USD). Todos nuestros platillos se preparan al momento con recetas de familia.</p>
+      </div>
+
+      <div class="filter-bar" id="menuFilters">
+</div>
+
+      <div id="menuGrid" class="menu-grid">
+</div>
+    </div>
+  </section>
+
+  <section id="armalo" class="section-padding" style="background: var(--surface-2);">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow" data-i18n="builderSectionEyebrow">Experiencia a tu Medida</span>
+        <h2 class="section-title" id="builderTitle">Arma tu Platillo Favorito</h2>
+        <p class="section-desc" id="builderSubtitle">Elige tu base, guisado al comal, nivel de salsa y complementos al gusto.</p>
+      </div>
+
+      <div class="builder-box">
+        <form id="builderForm" class="builder-steps">
+
+        </form>
+
+        <div class="builder-bar">
+          <div>
+            <div class="builder-total-lbl" data-i18n="builderTotalLabel">Total Personalizado</div>
+            <div id="builderPrice" class="builder-total-val">$0.00 USD</div>
+          </div>
+          <button id="addCustomOrderBtn" class="btn btn-primary" type="button">
+            <i class="fa-solid fa-plus"></i> <span data-i18n="builderAddBtn">Agregar al Pedido</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="historia" class="section-padding">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow" data-i18n="storyEyebrow">Dos Conceptos · Una Misma Familia</span>
+        <h2 class="section-title" data-i18n="storyTitle">Historia de Nuestra Pasión en Roswell</h2>
+        <p class="section-desc" data-i18n="storyDesc">Conoce los dos pilares gastronómicos de la familia Garcia / Salazar / Saens a lo largo de South Main Street.</p>
+      </div>
+
+      <div class="story-grid">
+        <div class="story-card">
+          <div class="story-year">1993</div>
+          <h3 class="story-title" data-i18n="storyCard1Title">Mi Casita Restaurant (Downtown)</h3>
+          <p class="story-desc" data-i18n="storyCard1Desc">
+            Fundado por Eddie Garcia y Karyn Salazar Garcia en el 305 S Main St. Por más de tres décadas ha sido el templo matutino del pueblo: menudo de fin de semana, huevos rancheros con chile de Nuevo México y sopapillas calientitas infladas al comal con miel.
+          </p>
+        </div>
+
+        <div class="story-card">
+          <div class="story-year">2021</div>
+          <h3 class="story-title" data-i18n="storyCard2Title">Garibaldi Mexican Kitchen (South Main)</h3>
+          <p class="story-desc" data-i18n="storyCard2Desc">
+            Nace bajo el liderazgo de la familia (M&N LLC / Saens) en el 2019 S Main St para celebrar la cocina viva y el ambiente festivo de Plaza Garibaldi. Cuenta con salón privado para eventos (quinceañeras, cumpleaños), drive-thru, tacos al pastor y parrilladas al carbón.
+          </p>
+        </div>
+
+        <div class="story-card">
+          <div class="story-year" data-i18n="storyCard3Year">Hoy</div>
+          <h3 class="story-title" data-i18n="storyCard3Title">Dos Experiencias Complementarias</h3>
+          <p class="story-desc" data-i18n="storyCard3Desc">
+            No somos franquicia ni sucursales idénticas: somos dos restaurantes independientes con personalidad propia. Mi Casita para iniciar tu mañana con el calor del hogar, y Garibaldi Kitchen para tus almuerzos, cenas y eventos festivos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pedidos" class="section-padding" style="background: var(--surface-2);">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-eyebrow" id="contactEyebrow" data-i18n="contactEyebrow">Visítanos en Roswell, NM</span>
+        <h2 class="section-title" id="contactTitle" data-i18n="contactTitle">Ubicación y Contacto Directo</h2>
+        <p class="section-desc" data-i18n="contactDesc">Pide para recoger o ven a disfrutar en nuestro salón comedor.</p>
+      </div>
+
+      <div class="location-grid">
+        <div class="location-card">
+          <div>
+            <span style="display: inline-block; font-size: 0.76rem; font-weight: 800; text-transform: uppercase; color: var(--accent); margin-bottom: 8px;" id="locationBadge" data-i18n="activeRestaurantBadge">
+              Restaurante Activo
+            </span>
+            <h3 style="font-family: var(--font-serif); font-size: 1.6rem; font-weight: 800; margin-bottom: 14px;" id="locationName">
+              {{REST_NAME}}
+            </h3>
+            <p style="color: var(--muted); font-size: 1rem; margin-bottom: 12px; line-height: 1.6;" id="locationAddress">
+              <i class="fa-solid fa-location-dot" style="color: var(--accent);"></i> {{REST_ADDRESS}}
+            </p>
+            <p style="color: var(--muted); font-size: 0.95rem; margin-bottom: 24px;" id="locationHours">
+              <i class="fa-solid fa-clock" style="color: var(--accent);"></i> {{REST_HOURS_LABEL}}
+            </p>
+          </div>
+
+          <div class="location-card-actions">
+            <a href="tel:{{PHONE}}" class="btn btn-primary" id="locationPhoneBtn"><i class="fa-solid fa-phone"></i> <span data-i18n="callBtn">Llamar al Restaurante</span></a>
+            <a href="{{MAPS_URL}}" target="_blank" rel="noopener" class="btn btn-outline" id="locationMapBtn"><i class="fa-solid fa-map-location-dot"></i> <span data-i18n="directionsBtn">Cómo Llegar (Google Maps)</span></a>
+            <a href="{{FACEBOOK_URL}}" target="_blank" rel="noopener" class="btn btn-outline" id="locationFbBtn"><i class="fa-brands fa-facebook"></i> <span data-i18n="facebookBtn">Facebook</span></a>
+          </div>
+        </div>
+
+        <div class="location-card" id="siblingCard">
+          <div>
+            <span style="display: inline-block; font-size: 0.76rem; font-weight: 800; text-transform: uppercase; color: var(--accent-2); margin-bottom: 8px;" data-i18n="siblingBadge">
+              Nuestro Otro Restaurante Familiar
+            </span>
+            <h3 style="font-family: var(--font-serif); font-size: 1.6rem; font-weight: 800; margin-bottom: 14px;" id="siblingName">
+              Garibaldi Mexican Kitchen
+            </h3>
+            <p style="color: var(--muted); font-size: 0.95rem; margin-bottom: 16px; line-height: 1.6;" id="siblingDesc">
+              ¿Buscas tacos al pastor, alambre al comal, pozole y cena completa? Visita Garibaldi Kitchen en 2019 S Main St.
+            </p>
+          </div>
+
+          <div>
+            <button class="btn btn-secondary" id="siblingSwitchBtn" type="button" style="width: 100%;">
+              <i class="fa-solid fa-arrow-right-arrow-left"></i> <span id="siblingBtnText">Ver la Carta de Garibaldi Kitchen</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<div id="restaurantSelectorModal" class="portal-overlay active" aria-modal="true" role="dialog">
+  <div class="portal-container">
+    <button id="portalCloseBtn" class="portal-close-btn" type="button" aria-label="Cerrar ventana"><i class="fa-solid fa-xmark"></i></button>
+
+    <div class="portal-header">
+      <div class="portal-family-tag">
+        <span><i class="fa-solid fa-star"></i> <span data-i18n="familyTag">Tradición Culinaria Familiar · Roswell, New Mexico</span> <i class="fa-solid fa-star"></i></span>
+      </div>
+      <h2 class="portal-title" data-i18n="portalTitle">Dos Restaurantes, Una Misma Familia</h2>
+      <p class="portal-desc" data-i18n="portalDesc">
+        Nuestros dos restaurantes no son sucursales, sino dos conceptos culinarios únicos con identidad y sazón propia. Elige la experiencia que deseas disfrutar hoy:
+      </p>
+    </div>
+
+    <div class="portal-cards-grid">
+
+      <article class="portal-card card-micasita" data-choice="micasita" tabindex="0">
+        <div class="portal-card-top">
+          <span class="portal-card-icon"><i class="fa-solid fa-house"></i></span>
+          <span class="portal-card-badge" id="portalBadgeCasita">Desayunos & Sabor Casero</span>
+        </div>
+
+        <h3 class="portal-card-title">Mi Casita Restaurant</h3>
+        <p class="portal-card-slogan" id="portalSloganCasita">"¡Una delicia para su paladar! — Auténtica Sazón de Hogar"</p>
+
+        <ul class="portal-meta-list">
+          <li><span class="icon"><i class="fa-solid fa-location-dot"></i></span> <span><b>305 S Main St</b>, Downtown Roswell, NM</span></li>
+          <li><span class="icon"><i class="fa-solid fa-clock"></i></span> <span id="portalHoursCasita"><b>7:00 AM – 3:00 PM</b> (Lun – Sáb)</span></li>
+          <li><span class="icon"><i class="fa-solid fa-phone"></i></span> <span>(575) 623-1455</span></li>
+        </ul>
+
+        <div class="portal-specialties">
+          <div class="portal-specialties-title" data-i18n="portalSpecialtiesTitle">Especialidades Estrella:</div>
+          <div class="portal-tags-cloud" id="portalTagsCasita">
+            <span class="portal-tag">Menudo de Fin de Semana</span>
+            <span class="portal-tag">Breakfast Burritos Ahogados</span>
+            <span class="portal-tag">Huevos Rancheros NM</span>
+            <span class="portal-tag">Sopapillas con Miel</span>
+            <span class="portal-tag">Asado de Puerco</span>
+            <span class="portal-tag">Caldo de Camarón</span>
+          </div>
+        </div>
+
+        <button class="portal-enter-btn" type="button" id="portalBtnCasita">
+          <span>Entrar a Mi Casita Restaurant</span> <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </article>
+
+      <article class="portal-card card-garibaldi" data-choice="garibaldi" tabindex="0">
+        <div class="portal-card-top">
+          <span class="portal-card-icon"><i class="fa-solid fa-guitar"></i></span>
+          <span class="portal-card-badge" id="portalBadgeGaribaldi">Cocina Viva, Tacos & Eventos</span>
+        </div>
+
+        <h3 class="portal-card-title">Garibaldi Mexican Kitchen</h3>
+        <p class="portal-card-slogan" id="portalSloganGaribaldi">"Where Flavor and Tradition Meet!"</p>
+
+        <ul class="portal-meta-list">
+          <li><span class="icon"><i class="fa-solid fa-location-dot"></i></span> <span><b>2019 S Main St</b>, South Roswell, NM</span></li>
+          <li><span class="icon"><i class="fa-solid fa-clock"></i></span> <span id="portalHoursGaribaldi"><b>8:00 AM – 8:00 PM</b> (Lun – Sáb) | <b>8am – 4pm</b> (Dom)</span></li>
+          <li><span class="icon"><i class="fa-solid fa-phone"></i></span> <span>(575) 550-5100</span></li>
+        </ul>
+
+        <div class="portal-specialties">
+          <div class="portal-specialties-title" data-i18n="portalSpecialtiesTitle">Especialidades Estrella:</div>
+          <div class="portal-tags-cloud" id="portalTagsGaribaldi">
+            <span class="portal-tag">Tacos al Pastor con Piña</span>
+            <span class="portal-tag">Alambre con Queso Fundido</span>
+            <span class="portal-tag">Pozole Rojo Tradicional</span>
+            <span class="portal-tag">Parrilladas Familiares</span>
+            <span class="portal-tag">Camarones Fiesta en Tocino</span>
+            <span class="portal-tag">Salón para Eventos & Drive-Thru</span>
+          </div>
+        </div>
+
+        <button class="portal-enter-btn" type="button" id="portalBtnGaribaldi">
+          <span>Entrar a Garibaldi Kitchen</span> <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </article>
+
+    </div>
+
+    <div class="portal-footer-note" id="portalFooterNote">
+      <i class="fa-solid fa-lightbulb" style="color: var(--accent-2);"></i> <span data-i18n="portalFooterNote">¿Indeciso? Puedes alternar libremente entre ambos menús en cualquier momento con el botón "Cambiar" en la barra superior.</span>
+    </div>
+  </div>
+</div>
+
+<button id="cartFloatBtn" class="cart-float" type="button" aria-label="Ver Pedido">
+  <i class="fa-solid fa-bag-shopping"></i> <span data-i18n="cartFloatBtn">Mi Pedido</span> <span id="cartBadge" class="cart-badge">0</span>
+</button>
+
+<div id="cartModal" class="modal-bg">
+  <div class="modal-box">
+    <button id="cartModalClose" class="modal-close" type="button"><i class="fa-solid fa-xmark"></i></button>
+    <h2 style="font-family: var(--font-serif); font-size: 1.5rem; font-weight: 800; margin-bottom: 20px;" data-i18n="cartSummaryTitle">Resumen de tu Pedido</h2>
+
+    <div id="cartItemsList" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; max-height: 250px; overflow-y: auto;">
+    </div>
+
+    <div style="border-top: 1px solid var(--border); padding-top: 14px; margin-bottom: 20px;">
+      <div style="display: flex; justify-content: space-between; font-family: var(--font-serif); font-size: 1.3rem; font-weight: 800;">
+        <span data-i18n="cartTotal">Total:</span>
+        <span id="cartTotalAmount" style="color: var(--accent-2);">$0.00 USD</span>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <label style="display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 6px; color: var(--muted);" data-i18n="cartMesaLabel">Número de Mesa (Si estás en el restaurante):</label>
+      <input type="text" id="cartMesaInput" placeholder="Ej. Mesa 4" style="width: 100%; padding: 10px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; color: var(--text);">
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <button id="sendToKitchenBtn" class="btn btn-primary" type="button"><i class="fa-solid fa-bell-concierge"></i> <span data-i18n="sendToKitchen">Enviar Comanda a Cocina (En Mesa)</span></button>
+      <button id="sendWhatsAppBtn" class="btn btn-outline" type="button"><i class="fa-solid fa-phone"></i> <span data-i18n="sendWhatsApp">Pedir por Teléfono / WhatsApp (Para Llevar)</span></button>
+    </div>
+  </div>
+</div>
+
+<div id="detailModal" class="modal-bg">
+  <div class="modal-box">
+    <button id="detailModalClose" class="modal-close" type="button"><i class="fa-solid fa-xmark"></i></button>
+    <div id="detailModalBody"></div>
+  </div>
+</div>
+
+<div id="toast" class="toast" aria-live="polite"></div>
+
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="name" id="footerBrandName">{{REST_NAME}}</span>
+      <p id="footerBrandDesc">{{REST_HERO_SUBTITLE}}</p>
+      <p style="margin-top: 14px; font-size: 0.82rem; color: var(--accent-2); font-weight: 700;" data-i18n="footerFamilyNote">
+        Una tradición de la Familia Garcia / Salazar / Saens en Roswell, NM.
+      </p>
+    </div>
+
+    <div>
+      <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 14px;" data-i18n="footerRestaurantsTitle">Restaurantes</h4>
+      <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.88rem; color: var(--muted);">
+        <li><a href="javascript:void(0)" class="switch-to-micasita"><i class="fa-solid fa-house"></i> Mi Casita Restaurant</a></li>
+        <li><a href="javascript:void(0)" class="switch-to-garibaldi"><i class="fa-solid fa-guitar"></i> Garibaldi Mexican Kitchen</a></li>
+        <li><a href="#historia" data-i18n="navStory">Nuestra Historia</a></li>
+        <li><a href="/carta">Carta Digital QR</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 14px;" data-i18n="footerHoursTitle">Horario</h4>
+      <p style="font-size: 0.88rem; color: var(--muted); line-height: 1.6;" id="footerHours">
+        {{REST_HOURS_LABEL}}
+      </p>
+    </div>
+
+    <div>
+      <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 14px;" data-i18n="footerContactTitle">Contacto Roswell</h4>
+      <p style="font-size: 0.88rem; color: var(--muted); margin-bottom: 6px;" id="footerAddress">{{REST_ADDRESS}}</p>
+      <p style="font-size: 0.88rem; color: var(--muted);" id="footerPhone">Tel: {{PHONE_LABEL}}</p>
+    </div>
+  </div>
+
+  <div class="container" style="text-align: center; border-top: 1px solid var(--border); padding-top: 20px; font-size: 0.8rem; color: var(--dim);">
+    <p data-i18n="footerRights">© Mi Casita Restaurant & Garibaldi Mexican Kitchen · Roswell, New Mexico · Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script src="/i18n.js"></script>
+<script src="/main.js"></script>
+</body>
+</html>
