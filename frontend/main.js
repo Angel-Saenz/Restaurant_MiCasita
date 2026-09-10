@@ -939,8 +939,8 @@
   pintarNavbar();
 
   $('#themeToggle')?.addEventListener('click', () => {
-    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-    const next = isLight ? 'dark' : 'light';
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const next = isDark ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
     save('theme', next);
   });
