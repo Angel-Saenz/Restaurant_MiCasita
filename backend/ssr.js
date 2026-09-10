@@ -29,7 +29,7 @@ export function renderLanding(rootPath, restId = null) {
   `).join('');
 
   const menuHtml = items.map(item => `
-    <article class="menu-card" data-id="${item.id}" data-category="${item.category}" data-cat="${item.category}" data-price="${item.price}" data-restaurant="${item.restaurant_id || currentRestId}">
+    <article class="menu-card" data-id="${item.id}" data-category="${item.category}" data-cat="${item.category}" data-price="${item.price}" data-restaurant="${item.restaurant_id || currentRestId}" role="button" tabindex="0" onclick="window.Casita.openDetail('${item.id}')">
       <div class="card-art">
         ${item.badge ? `<span class="card-badge">${escapeHtml(item.badge)}</span>` : ''}
         ${item.image_url
@@ -44,8 +44,8 @@ export function renderLanding(rootPath, restId = null) {
         </header>
         <p class="card-desc">${escapeHtml(item.description)}</p>
         <div class="card-foot">
-          <button class="btn btn-outline" data-action="detail" data-id="${item.id}">View Details</button>
-          <button class="btn btn-primary" data-action="order" data-id="${item.id}"><i class="fa-solid fa-plus"></i> Order Now</button>
+          <button class="btn btn-outline" type="button" data-action="detail" data-id="${item.id}" onclick="event.stopPropagation(); window.Casita.openDetail('${item.id}')">View Details</button>
+          <button class="btn btn-primary" type="button" data-action="order" data-id="${item.id}" onclick="event.stopPropagation(); window.Casita.addToCart('${item.id}')"><i class="fa-solid fa-plus"></i> Order Now</button>
         </div>
       </div>
     </article>

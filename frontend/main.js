@@ -410,7 +410,7 @@
           const dishBadge = (loc && loc.badge !== undefined) ? loc.badge : item.badge;
 
           return `
-            <article class="menu-card" data-id="${item.id}" data-category="${item.category}" data-price="${item.price}" data-restaurant="${item.restaurant_id || restId}">
+            <article class="menu-card" data-id="${item.id}" data-category="${item.category}" data-price="${item.price}" data-restaurant="${item.restaurant_id || restId}" role="button" tabindex="0" onclick="window.Casita.openDetail('${item.id}')">
               <div class="card-art">
                 ${dishBadge ? `<span class="card-badge">${escapeHtml(dishBadge)}</span>` : ''}
                 ${item.image_url
@@ -425,8 +425,8 @@
                 </header>
                 <p class="card-desc">${escapeHtml(dishDesc)}</p>
                 <div class="card-foot">
-                  <button class="btn btn-outline" data-action="detail" data-id="${item.id}">${detailBtnLabel}</button>
-                  <button class="btn btn-primary" data-action="order" data-id="${item.id}"><i class="fa-solid fa-plus"></i> ${orderBtnLabel}</button>
+                  <button class="btn btn-outline" type="button" data-action="detail" data-id="${item.id}" onclick="event.stopPropagation(); window.Casita.openDetail('${item.id}')">${detailBtnLabel}</button>
+                  <button class="btn btn-primary" type="button" data-action="order" data-id="${item.id}" onclick="event.stopPropagation(); window.Casita.addToCart('${item.id}')"><i class="fa-solid fa-plus"></i> ${orderBtnLabel}</button>
                 </div>
               </div>
             </article>
@@ -629,6 +629,12 @@
       cart.splice(idx, 1);
       saveCart();
     },
+    openDetail(id) {
+      openDetailModal(id);
+    },
+    addToCart(id) {
+      addToCart(id);
+    },
     addAndClose(id) {
       addToCart(id);
       closeDetailModal();
@@ -712,12 +718,29 @@
 
       if (!item) {
         try {
-          const staticRes = await fetch('./assets/data/menu.json');
+          const base = location.pathname.includes('/frontend/') ? './assets/data/menu.json' : './frontend/assets/data/menu.json';
+          const staticRes = await fetch(base);
           if (staticRes.ok) {
             const all = await staticRes.json();
             item = all.find(it => String(it.id) === String(id)) || null;
           }
         } catch (e) {}
+      }
+
+      if (!item) {
+        const card = document.querySelector(`.menu-card[data-id="${id}"]`);
+        if (card) {
+          const loc = (window.CasitaI18N && window.CasitaI18N.getDish(id, currentLang)) || null;
+          item = {
+            id,
+            restaurant_id: card.dataset.restaurant || currentRestId,
+            name: (loc && loc.name) || card.querySelector('.card-name')?.textContent || 'Platillo',
+            description: (loc && loc.description) || card.querySelector('.card-desc')?.textContent || '',
+            price: Number(card.dataset.price) || 0,
+            image_url: card.querySelector('.card-art img')?.getAttribute('src') || '',
+            ingredients: []
+          };
+        }
       }
 
       if (!item) return;
@@ -753,24 +776,20 @@
           <button class="btn btn-primary" style="width: 100%; padding: 14px;" onclick="window.Casita.addAndClose('${item.id}')">${addLabel}</button>
         `;
         modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
       }
     } catch (err) {}
   }
 
   function closeDetailModal() {
     $('#detailModal')?.classList.remove('active');
-    document.body.style.overflow = '';
   }
 
   function closeCartModal() {
     $('#cartModal')?.classList.remove('active');
-    document.body.style.overflow = '';
   }
 
   $('#cartFloatBtn')?.addEventListener('click', () => {
     $('#cartModal')?.classList.add('active');
-    document.body.style.overflow = 'hidden';
   });
   $('#cartModalClose')?.addEventListener('click', closeCartModal);
   $('#cartModal')?.addEventListener('click', (e) => {
