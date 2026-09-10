@@ -732,7 +732,7 @@
   };
 
   window.CasitaI18N = {
-    current: 'es',
+    current: 'en',
     UI,
     RESTAURANTS_I18N,
     CATEGORIES_I18N,
@@ -740,7 +740,7 @@
     BUILDER_I18N,
 
     t(key, lang = this.current) {
-      return (UI[lang] && UI[lang][key]) || (UI.es[key] || key);
+      return (UI[lang] && UI[lang][key]) || (UI.en[key] || UI.es[key] || key);
     },
 
     getRestaurant(id, lang = this.current) {

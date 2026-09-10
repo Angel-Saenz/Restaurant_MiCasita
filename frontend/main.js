@@ -108,9 +108,9 @@
   let currentLang = (() => {
     const p = params.get('lang');
     if (p === 'en' || p === 'es') return p;
-    const s = store('casita_lang', null);
+    const s = store('casita_lang_v2', null);
     if (s === 'en' || s === 'es') return s;
-    return 'es';
+    return 'en';
   })();
 
   const portalModal = $('#restaurantSelectorModal');
@@ -135,8 +135,9 @@
   }
 
   function setLanguage(lang) {
-    if (lang !== 'es' && lang !== 'en') lang = 'es';
+    if (lang !== 'es' && lang !== 'en') lang = 'en';
     currentLang = lang;
+    save('casita_lang_v2', lang);
     save('casita_lang', lang);
     if (window.CasitaI18N) window.CasitaI18N.current = lang;
 
@@ -630,7 +631,7 @@
     },
     addAndClose(id) {
       addToCart(id);
-      $('#detailModal')?.classList.remove('active');
+      closeDetailModal();
     }
   };
 
@@ -669,19 +670,58 @@
   }
 
   $('#menuGrid')?.addEventListener('click', (e) => {
-    const btn = e.target.closest('button[data-action]');
-    if (!btn) return;
-    const action = btn.dataset.action;
-    const id = btn.dataset.id;
+    const orderBtn = e.target.closest('button[data-action="order"]');
+    if (orderBtn) {
+      e.stopPropagation();
+      addToCart(orderBtn.dataset.id);
+      return;
+    }
 
-    if (action === 'detail') openDetailModal(id);
-    else if (action === 'order') addToCart(id);
+    const detailBtn = e.target.closest('button[data-action="detail"]');
+    if (detailBtn) {
+      e.stopPropagation();
+      openDetailModal(detailBtn.dataset.id);
+      return;
+    }
+
+    const card = e.target.closest('.menu-card');
+    if (card && card.dataset.id) {
+      openDetailModal(card.dataset.id);
+    }
   });
 
   async function openDetailModal(id) {
     try {
-      const res = await fetch(`/api/menu/${id}`);
-      const item = await res.json();
+      let item = null;
+      for (const r in menuDataCache) {
+        const found = menuDataCache[r]?.items?.find(it => String(it.id) === String(id));
+        if (found) {
+          item = found;
+          break;
+        }
+      }
+
+      if (!item) {
+        try {
+          const res = await fetch(`/api/menu/${encodeURIComponent(id)}`);
+          if (res.ok) {
+            item = await res.json();
+          }
+        } catch (e) {}
+      }
+
+      if (!item) {
+        try {
+          const staticRes = await fetch('./assets/data/menu.json');
+          if (staticRes.ok) {
+            const all = await staticRes.json();
+            item = all.find(it => String(it.id) === String(id)) || null;
+          }
+        } catch (e) {}
+      }
+
+      if (!item) return;
+
       track('view', item.id);
 
       const loc = (window.CasitaI18N && window.CasitaI18N.getDish(item.id, currentLang)) || null;
@@ -690,12 +730,12 @@
 
       const modal = $('#detailModal');
       const body = $('#detailModalBody');
-      const ingLabel = window.CasitaI18N ? window.CasitaI18N.t('detailIngredients', currentLang) : 'Ingredientes:';
-      const addLabel = window.CasitaI18N ? window.CasitaI18N.t('detailAddBtn', currentLang) : 'Agregar a Mi Pedido';
+      const ingLabel = window.CasitaI18N ? window.CasitaI18N.t('detailIngredients', currentLang) : 'Ingredients:';
+      const addLabel = window.CasitaI18N ? window.CasitaI18N.t('detailAddBtn', currentLang) : 'Add to My Order';
 
       if (modal && body) {
         body.innerHTML = `
-          ${item.image_url ? `<img src="${formatAssetUrl(item.image_url)}" alt="${escapeHtml(dishName)}" style="width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius-sm); margin-bottom: 16px;">` : ''}
+          ${item.image_url ? `<img src="${formatAssetUrl(item.image_url)}" alt="${escapeHtml(dishName)}" style="width: 100%; height: 210px; object-fit: cover; border-radius: var(--radius-sm); margin-bottom: 16px;">` : ''}
           <div style="font-size: 0.76rem; text-transform: uppercase; font-weight: 800; color: var(--accent); margin-bottom: 4px;">
             ${RESTAURANTS[item.restaurant_id || currentRestId]?.name || ''}
           </div>
@@ -710,16 +750,44 @@
               </div>
             </div>
           ` : ''}
-          <button class="btn btn-primary" style="width: 100%;" onclick="window.Casita.addAndClose('${item.id}')">${addLabel}</button>
+          <button class="btn btn-primary" style="width: 100%; padding: 14px;" onclick="window.Casita.addAndClose('${item.id}')">${addLabel}</button>
         `;
         modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
       }
     } catch (err) {}
   }
 
-  $('#cartFloatBtn')?.addEventListener('click', () => $('#cartModal')?.classList.add('active'));
-  $('#cartModalClose')?.addEventListener('click', () => $('#cartModal')?.classList.remove('active'));
-  $('#detailModalClose')?.addEventListener('click', () => $('#detailModal')?.classList.remove('active'));
+  function closeDetailModal() {
+    $('#detailModal')?.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function closeCartModal() {
+    $('#cartModal')?.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  $('#cartFloatBtn')?.addEventListener('click', () => {
+    $('#cartModal')?.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+  $('#cartModalClose')?.addEventListener('click', closeCartModal);
+  $('#cartModal')?.addEventListener('click', (e) => {
+    if (e.target === $('#cartModal')) closeCartModal();
+  });
+  $('#detailModalClose')?.addEventListener('click', closeDetailModal);
+  $('#detailModal')?.addEventListener('click', (e) => {
+    if (e.target === $('#detailModal')) closeDetailModal();
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeDetailModal();
+      closeCartModal();
+      closePortal();
+    }
+  });
 
   $('#sendToKitchenBtn')?.addEventListener('click', async () => {
     if (cart.length === 0) {

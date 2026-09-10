@@ -44,8 +44,8 @@ export function renderLanding(rootPath, restId = null) {
         </header>
         <p class="card-desc">${escapeHtml(item.description)}</p>
         <div class="card-foot">
-          <button class="btn btn-outline" data-action="detail" data-id="${item.id}">Ver Detalle</button>
-          <button class="btn btn-primary" data-action="order" data-id="${item.id}"><i class="fa-solid fa-plus"></i> Pedir Ya</button>
+          <button class="btn btn-outline" data-action="detail" data-id="${item.id}">View Details</button>
+          <button class="btn btn-primary" data-action="order" data-id="${item.id}"><i class="fa-solid fa-plus"></i> Order Now</button>
         </div>
       </div>
     </article>
