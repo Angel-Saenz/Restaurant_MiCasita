@@ -2,94 +2,8 @@
 
 :root,
 :root[data-restaurant="micasita"],
-:root[data-restaurant="micasita"][data-theme="light"],
-:root:not([data-restaurant])[data-theme="light"],
-:root:not([data-theme="dark"]) {
-  --bg:          #faf6f0;
-  --surface:     #ffffff;
-  --surface-2:   #f2ebe0;
-  --surface-3:   #e7dcce;
-  --border:      rgba(192, 90, 62, 0.16);
-  --border-subtle: rgba(70, 45, 30, 0.08);
-  --text:        #1f1612;
-  --muted:       #665449;
-  --dim:         #8c796d;
-
-  --accent:      #c05a3e;
-  --accent-rgb:  192, 90, 62;
-  --accent-2:    #d97706;
-  --accent-3:    #8b2223;
-  --sage:        #4e7a5b;
-  --gold:        #d97706;
-  --green:       #2e7d32;
-  --danger:      #c62828;
-
-  --glow:        rgba(192, 90, 62, 0.18);
-  --font-serif:  'Playfair Display', Georgia, 'Times New Roman', serif;
-  --font-sans:   'Inter', system-ui, -apple-system, sans-serif;
-
-  --container:   min(1240px, calc(100% - 40px));
-  --gap:         clamp(70px, 9vw, 130px);
-  --radius:      24px;
-  --radius-sm:   14px;
-  --ease:        cubic-bezier(.22, 1, .36, 1);
-  --shadow:      0 20px 48px rgba(70, 40, 20, 0.10);
-  --shadow-card: 0 10px 26px rgba(70, 40, 20, 0.06);
-
-  --topbar-bg:   #1d1511;
-  --topbar-text: #f7eee4;
-  --topbar-muted: #b8a698;
-  --footer-bg:   #18120e;
-  --footer-text: #fbf7f2;
-  --footer-muted: #b8a79a;
-  --footer-border: rgba(217, 119, 6, 0.22);
-}
-
-:root[data-restaurant="garibaldi"],
-:root[data-restaurant="garibaldi"][data-theme="light"],
-:root[data-restaurant="garibaldi"]:not([data-theme="dark"]) {
-  --bg:          #f6f9f7;
-  --surface:     #ffffff;
-  --surface-2:   #ebf3ed;
-  --surface-3:   #dce8df;
-  --border:      rgba(27, 122, 67, 0.18);
-  --border-subtle: rgba(20, 50, 35, 0.08);
-  --text:        #112119;
-  --muted:       #476153;
-  --dim:         #718a7c;
-
-  --accent:      #d90429;
-  --accent-rgb:  217, 4, 41;
-  --accent-2:    #d97706;
-  --accent-3:    #1b7a43;
-  --sage:        #248277;
-  --gold:        #d97706;
-  --green:       #2e7d32;
-  --danger:      #c62828;
-
-  --glow:        rgba(217, 4, 41, 0.16);
-  --font-serif:  'Playfair Display', Georgia, 'Times New Roman', serif;
-  --font-sans:   'Inter', system-ui, -apple-system, sans-serif;
-
-  --container:   min(1240px, calc(100% - 40px));
-  --gap:         clamp(70px, 9vw, 130px);
-  --radius:      24px;
-  --radius-sm:   14px;
-  --ease:        cubic-bezier(.22, 1, .36, 1);
-  --shadow:      0 20px 48px rgba(20, 50, 30, 0.10);
-  --shadow-card: 0 10px 26px rgba(20, 50, 30, 0.06);
-
-  --topbar-bg:   #0d1a14;
-  --topbar-text: #eef7f2;
-  --topbar-muted: #9ab4a5;
-  --footer-bg:   #0a1510;
-  --footer-text: #f4fbf7;
-  --footer-muted: #9eb5a9;
-  --footer-border: rgba(255, 183, 3, 0.22);
-}
-
-:root[data-theme="dark"],
-:root[data-restaurant="micasita"][data-theme="dark"] {
+:root:not([data-theme="light"]),
+:root[data-theme="dark"] {
   --bg:          #130e0b;
   --surface:     #1c1511;
   --surface-2:   #271c17;
@@ -110,18 +24,25 @@
   --danger:      #e74c3c;
 
   --glow:        rgba(192, 90, 62, 0.28);
+  --font-serif:  'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans:   'Inter', system-ui, -apple-system, sans-serif;
+
+  --container:   min(1240px, calc(100% - 40px));
+  --gap:         clamp(70px, 9vw, 130px);
+  --radius:      24px;
+  --radius-sm:   14px;
+  --ease:        cubic-bezier(.22, 1, .36, 1);
   --shadow:      0 24px 60px rgba(0, 0, 0, .48);
   --shadow-card: 0 16px 36px rgba(0, 0, 0, .35);
 
-  --topbar-bg:   #221813;
-  --topbar-text: #fcf7f2;
-  --topbar-muted: #b8a79a;
   --footer-bg:   #18120e;
   --footer-text: #fcf7f2;
   --footer-muted: #b8a79a;
   --footer-border: rgba(233, 180, 76, 0.16);
 }
 
+:root[data-restaurant="garibaldi"],
+:root[data-restaurant="garibaldi"]:not([data-theme="light"]),
 :root[data-restaurant="garibaldi"][data-theme="dark"] {
   --bg:          #0a130f;
   --surface:     #111f19;
@@ -143,16 +64,83 @@
   --danger:      #ef233c;
 
   --glow:        rgba(27, 122, 67, 0.35);
+  --font-serif:  'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans:   'Inter', system-ui, -apple-system, sans-serif;
+
+  --container:   min(1240px, calc(100% - 40px));
+  --gap:         clamp(70px, 9vw, 130px);
+  --radius:      24px;
+  --radius-sm:   14px;
+  --ease:        cubic-bezier(.22, 1, .36, 1);
   --shadow:      0 24px 60px rgba(0, 0, 0, .55);
   --shadow-card: 0 16px 36px rgba(0, 0, 0, .4);
 
-  --topbar-bg:   #112019;
-  --topbar-text: #f4fbf7;
-  --topbar-muted: #9db5a8;
   --footer-bg:   #0f1c16;
   --footer-text: #f4fbf7;
   --footer-muted: #9db5a8;
   --footer-border: rgba(255, 183, 3, 0.2);
+}
+
+:root[data-theme="light"],
+:root[data-restaurant="micasita"][data-theme="light"],
+:root:not([data-restaurant])[data-theme="light"] {
+  --bg:          #faf6f0;
+  --surface:     #ffffff;
+  --surface-2:   #f2ebe0;
+  --surface-3:   #e7dcce;
+  --border:      rgba(192, 90, 62, 0.16);
+  --border-subtle: rgba(70, 45, 30, 0.08);
+  --text:        #1f1612;
+  --muted:       #665449;
+  --dim:         #8c796d;
+
+  --accent:      #c05a3e;
+  --accent-rgb:  192, 90, 62;
+  --accent-2:    #d97706;
+  --accent-3:    #8b2223;
+  --sage:        #4e7a5b;
+  --gold:        #d97706;
+  --green:       #2e7d32;
+  --danger:      #c62828;
+
+  --glow:        rgba(192, 90, 62, 0.18);
+  --shadow:      0 20px 48px rgba(70, 40, 20, 0.10);
+  --shadow-card: 0 10px 26px rgba(70, 40, 20, 0.06);
+
+  --footer-bg:   #18120e;
+  --footer-text: #fbf7f2;
+  --footer-muted: #b8a79a;
+  --footer-border: rgba(217, 119, 6, 0.22);
+}
+
+:root[data-restaurant="garibaldi"][data-theme="light"] {
+  --bg:          #f6f9f7;
+  --surface:     #ffffff;
+  --surface-2:   #ebf3ed;
+  --surface-3:   #dce8df;
+  --border:      rgba(27, 122, 67, 0.18);
+  --border-subtle: rgba(20, 50, 35, 0.08);
+  --text:        #112119;
+  --muted:       #476153;
+  --dim:         #718a7c;
+
+  --accent:      #d90429;
+  --accent-rgb:  217, 4, 41;
+  --accent-2:    #d97706;
+  --accent-3:    #1b7a43;
+  --sage:        #248277;
+  --gold:        #d97706;
+  --green:       #2e7d32;
+  --danger:      #c62828;
+
+  --glow:        rgba(217, 4, 41, 0.16);
+  --shadow:      0 20px 48px rgba(20, 50, 30, 0.10);
+  --shadow-card: 0 10px 26px rgba(20, 50, 30, 0.06);
+
+  --footer-bg:   #0a1510;
+  --footer-text: #f4fbf7;
+  --footer-muted: #9eb5a9;
+  --footer-border: rgba(255, 183, 3, 0.22);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -189,56 +177,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   background: var(--accent); color: #fff; padding: 10px 18px; border-radius: 10px;
 }
 .skip-link:focus { left: 12px; }
-
-.family-topbar {
-  background: var(--topbar-bg);
-  border-bottom: 1px solid var(--border-subtle);
-  padding: 8px 0;
-  font-size: 0.78rem;
-  color: var(--topbar-muted);
-}
-.family-topbar-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-.family-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  color: var(--topbar-text);
-}
-.family-tag span.badge-star {
-  color: var(--accent-2);
-}
-.topbar-switch-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: color-mix(in srgb, var(--topbar-bg) 75%, white);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  padding: 4px 12px;
-  border-radius: 999px;
-  color: var(--topbar-text);
-  font-weight: 600;
-  transition: all .25s var(--ease);
-}
-.topbar-switch-btn:hover {
-  background: var(--accent);
-  color: #fff;
-  border-color: var(--accent);
-  transform: translateY(-1px);
-}
-.family-topbar-actions {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
 
 .navbar {
   position: sticky; top: 0; z-index: 100;
@@ -338,10 +276,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   background: var(--surface);
 }
 .icon-btn:hover { border-color: var(--accent); transform: translateY(-2px); }
-.icon-sun { display: none; }
-.icon-moon { display: block; }
-:root[data-theme="dark"] .icon-sun { display: block; }
-:root[data-theme="dark"] .icon-moon { display: none; }
+.icon-sun { display: block; }
+.icon-moon { display: none; }
+:root[data-theme="light"] .icon-sun { display: none; }
+:root[data-theme="light"] .icon-moon { display: block; }
 
 .nav-cta {
   font-size: .82rem; font-weight: 700; padding: 9px 18px; border-radius: 999px;
@@ -1269,24 +1207,6 @@ footer ul a:hover {
     --gap: clamp(40px, 7vw, 60px);
   }
 
-  .family-topbar { padding: 6px 0; }
-  .family-topbar-inner {
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    gap: 8px;
-  }
-  .family-topbar-actions {
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-  }
-  .family-tag {
-    font-size: 0.72rem;
-    text-align: center;
-    justify-content: center;
-  }
-
   .navbar { padding: 10px 0; }
   .nav-inner {
     gap: 10px;
@@ -1396,14 +1316,6 @@ footer ul a:hover {
 @media (max-width: 480px) {
   :root {
     --container: calc(100% - 20px);
-  }
-
-  .family-topbar-actions [data-i18n="twoRestaurantsNote"] {
-    display: none;
-  }
-  .topbar-switch-btn {
-    font-size: 0.72rem;
-    padding: 3px 8px;
   }
 
   .nav-logo .name {
